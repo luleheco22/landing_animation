@@ -1,5 +1,6 @@
 'use client'
 import Image from 'next/image';
+import { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
@@ -7,12 +8,13 @@ import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-scroll';
 
 export default function Home() {
+  const [showImage, setShowImage] = useState(false);
     const { ref: ref1, inView: inView1 } = useInView({ triggerOnce: false, threshold: 0.1 });
-  const { ref: ref2, inView: inView2 } = useInView({ triggerOnce: false, threshold: 0.1 });
-  const { ref: ref3, inView: inView3 } = useInView({ triggerOnce: false, threshold: 0.1 });
-  const { ref: ref4, inView: inView4 } = useInView({ triggerOnce: false, threshold: 0.1 });
-const { ref: ref5, inView: inView5 } = useInView({ triggerOnce: false, threshold: 0.1 });
-const { ref: ref6, inView: inView6 } = useInView({ triggerOnce: false, threshold: 0.1 });
+//   const { ref: ref2, inView: inView2 } = useInView({ triggerOnce: false, threshold: 0.1 });
+//   const { ref: ref3, inView: inView3 } = useInView({ triggerOnce: false, threshold: 0.1 });
+//   const { ref: ref4, inView: inView4 } = useInView({ triggerOnce: false, threshold: 0.1 });
+// const { ref: ref5, inView: inView5 } = useInView({ triggerOnce: false, threshold: 0.1 });
+// const { ref: ref6, inView: inView6 } = useInView({ triggerOnce: false, threshold: 0.1 });
 
   return (
     <ParallaxProvider>
@@ -21,26 +23,28 @@ const { ref: ref6, inView: inView6 } = useInView({ triggerOnce: false, threshold
         <Section ref={ref1}>
           <BackgroundImageContainer>
             <BackgroundImage
-              src="https://0a11683f6f701c36.demo.carrd.co/assets/images/container10-881d2f59.jpg?v=912baa28"
-              alt="Background Image 1"
-              initial={{ opacity: 1 }}
-              animate={{ opacity: 0 }}
-              transition={{ ease: "easeOut", duration: 7, delay:1, repeat: Infinity, repeatType: "reverse"}}
-            />
-            <BackgroundImage
               src="https://0a11683f6f701c36.demo.carrd.co/assets/images/container10-960dbb54.jpg?v=912baa28"
               alt="Background Image 2"
-              initial={{  opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ ease: "easeOut", duration: 7, delay:1, repeat: Infinity, repeatType: "reverse"}}
+              initial={{ opacity: 0, y: 0, }} /* Configuración inicial de la imagen con escala mayor */
+              animate={{ opacity: 1, y: -100, }}
+              transition={{ ease: "easeOut", duration: 3, delay:2, repeatDelay: 3, repeat: Infinity, repeatType: "mirror"}}
             />
+            <BackgroundImage
+              src="https://0a11683f6f701c36.demo.carrd.co/assets/images/container10-881d2f59.jpg?v=912baa28"
+              alt="Background Image 1"
+              initial={{ opacity: 0, y: -100, }} 
+              animate={{ opacity: 1, y: 0, }} 
+              transition={{ ease: "easeOut", duration: 3, delay: 5, repeatDelay: 3, repeat: Infinity, repeatType: "mirror"}}
+            />
+            
             <BackgroundImage
               src="https://0a11683f6f701c36.demo.carrd.co/assets/images/container10-587d4d02.jpg?v=912baa28https://0a11683f6f701c36.demo.carrd.co/assets/images/container10-960dbb54.jpg?v=912baa28"
               alt="Background Image 3"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ ease: "easeOut", duration: 7, delay:1, repeat: Infinity, repeatType: "reverse" }}
-            />
+              initial={{ opacity: 0, y: 0 }}
+              animate={{ opacity: 1, y:-100 }}
+              transition={{ ease: "easeOut", duration: 3, delay: 8, repeatDelay: 3, repeat: Infinity, repeatType: "mirror"}}
+            /> 
+           
           </BackgroundImageContainer>
           <Overlay>
            <AnimatedTitle
@@ -57,16 +61,11 @@ const { ref: ref6, inView: inView6 } = useInView({ triggerOnce: false, threshold
             >
               Interdum varius vincit omnia dum spiro lorem ipsum dolor veroeros.
             </AnimatedSubtitle>
-            {/* Botón para ir a la sección 2 */}
-            <Link to="section2" smooth={true} duration={500}>
-              <ButtonScrollDown>
-                ICONO BOTON {/* Asegúrate de tener FontAwesome o reemplaza este ícono */}
-              </ButtonScrollDown>
-            </Link>
+            
           </Overlay>
         </Section>
         {/*SECCION 2 */}
-        <Section ref={ref4} id="section2">
+        {/* <Section ref={ref4} id="section2">
            <AnimatedTitle
               initial={{ y: -200, opacity: 0 }}
               animate={inView4 ? { y: -100, opacity: 1 } : {}}
@@ -126,9 +125,9 @@ const { ref: ref6, inView: inView6 } = useInView({ triggerOnce: false, threshold
           </AnimatedSubtitle>
     </SmallSubtitle>
           </SubtitlesGrid>
-        </Section>
+        </Section> */}
         {/*SECCION 3 */}
-        <Section ref={ref2}>
+        {/* <Section ref={ref2}>
           <BackgroundImageContainer>
             <BackgroundImage
               src="https://0a11683f6f701c36.demo.carrd.co/assets/images/container15-cbe1b1b6.jpg?v=912baa28"
@@ -168,9 +167,9 @@ const { ref: ref6, inView: inView6 } = useInView({ triggerOnce: false, threshold
               Interdum varius vincit omnia dum spiro lorem ipsum dolor veroeros. Socis natoque penatibus et magnis. Maecenas pharetra convallis posuere adipiscing elit. Duis dapibus rutrum facilisis.
             </AnimatedSubtitle>
           </Overlay>
-        </Section>
+        </Section> */}
         {/*Seccion 4 */}
-        <Section ref={ref5}>
+        {/* <Section ref={ref5}>
            <AnimatedTitle
               initial={{ y: -200, opacity: 0 }}
               animate={inView5 ? { y: -100, opacity: 1 } : {}}
@@ -230,9 +229,9 @@ const { ref: ref6, inView: inView6 } = useInView({ triggerOnce: false, threshold
           </AnimatedSubtitle>
     </SmallSubtitle>
           </SubtitlesGrid>
-        </Section>
+        </Section> */}
         {/*Seccion 5 */}
-        <Section ref={ref3}>
+        {/* <Section ref={ref3}>
              <BackgroundImageContainer>
             <BackgroundImage
               src="https://0a11683f6f701c36.demo.carrd.co/assets/images/container15-cbe1b1b6.jpg?v=912baa28https://0a11683f6f701c36.demo.carrd.co/assets/images/container07-85c814fd.jpg?v=912baa28"
@@ -272,10 +271,7 @@ const { ref: ref6, inView: inView6 } = useInView({ triggerOnce: false, threshold
               Interdum varius vincit omnia dum spiro lorem ipsum dolor veroeros. Socis natoque penatibus et magnis. Maecenas pharetra convallis posuere adipiscing elit. Duis dapibus rutrum facilisis.
             </AnimatedSubtitle>
           </Overlay>
-        </Section>
-        <Section>
-          <h2>Section 6</h2>
-        </Section>
+        </Section> */}
       </Main>
     </ParallaxProvider>
   );
@@ -310,7 +306,7 @@ const BackgroundImageContainer = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 120%;
   overflow: hidden;
   z-index: 0;
 `;
@@ -320,6 +316,7 @@ const BackgroundImage = styled(motion.img)`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform-origin: center center; /* Establece el punto de origen de la rotación en el centro de la imagen */
 `;
 
 const Overlay = styled.div`
